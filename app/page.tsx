@@ -1,8 +1,9 @@
 "use client";
 
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const canonicalLinks = {
   results: 'https://alphamaverick.io/results-transparency',
@@ -76,7 +77,7 @@ const faqs = [
     a: 'A broker is a regulated platform that holds your capital and executes trades. Think of it as the account where your investment lives, like a bank account. Alpha Maverick connects to that account, but your money stays in your name, under your control. You do not need to know how to trade. The Expert Advisor does that.',
   },
   {
-    q: 'Which broker — VT Markets or Equiti?',
+    q: 'Which broker, VT Markets or Equiti?',
     a: 'Either one works, and both come with full video tutorials. If you are not sure, VT Markets is the simpler place to start. It is more self-service to set up, it supports multiple currencies, and you can begin from $500. Choose Equiti if you would prefer a USD-only account; it starts from $1,000. Investing more than $10,000? Use the VT Markets priority registration link.',
   },
   {
@@ -105,9 +106,17 @@ const faqs = [
   },
 ];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function SectionLabel({
+  children,
+  tone = 'dark',
+  className = '',
+}: {
+  children: React.ReactNode;
+  tone?: 'dark' | 'light';
+  className?: string;
+}) {
   return (
-    <span className="badge-pill">
+    <span className={`badge-pill ${tone === 'light' ? 'badge-pill-gold' : ''} ${className}`}>
       {children}
     </span>
   );
@@ -125,11 +134,19 @@ function SectionShell({
   className?: string;
 }) {
   const reduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const shouldReduceMotion = mounted ? reduceMotion : false;
+
   return (
     <motion.section
       id={id}
-      initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.22 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`${dark ? 'surface-dark text-white' : 'surface-light'} ${className}`}
@@ -153,6 +170,13 @@ function IconMark({ kind }: { kind: string }) {
 export default function Page() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  const shouldReduceMotion = mounted ? reduceMotion : false;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const menuLinks = useMemo(() => ([
     { label: 'What Is It', href: '#what-is' },
     { label: 'Results', href: '#results' },
@@ -177,7 +201,7 @@ export default function Page() {
 
           <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
             {menuLinks.map((link) => (
-              <a key={link.href} href={link.href} className="transition-colors hover:text-gold">
+              <a key={link.href} href={link.href} className="nav-link-underline transition-colors hover:text-gold">
                 {link.label}
               </a>
             ))}
@@ -188,7 +212,7 @@ export default function Page() {
               href={canonicalLinks.membership}
               target="_blank"
               rel="noreferrer"
-              className="hidden rounded-xl bg-gold px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#f2b44a] md:inline-flex"
+              className="cta-gold hidden rounded-xl px-4 py-2 text-sm font-semibold md:inline-flex"
             >
               Start Free
             </a>
@@ -224,7 +248,7 @@ export default function Page() {
                     {link.label}
                   </a>
                 ))}
-                <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="rounded-xl bg-gold px-4 py-3 text-center font-semibold text-white transition hover:bg-[#f2b44a]">
+                <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="cta-gold rounded-xl px-4 py-3 text-center font-semibold">
                   Start Free
                 </a>
               </div>
@@ -278,7 +302,7 @@ export default function Page() {
             </div>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
-              <a href="#how-it-works" className="w-full rounded-xl bg-gold px-8 py-4 text-center font-semibold text-white transition hover:bg-[#f2b44a] sm:w-auto">
+              <a href="#how-it-works" className="cta-gold w-full rounded-xl px-8 py-4 text-center font-semibold sm:w-auto">
                 See How It Works
               </a>
               <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="w-full rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-center font-medium text-white transition hover:border-gold/50 hover:bg-white/10 sm:w-auto">
@@ -310,8 +334,8 @@ export default function Page() {
             {whatIsCards.map((card, index) => (
               <motion.div
                 key={card.title}
-                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
                 className="glass rounded-3xl p-6 transition duration-300 hover:border-gold/40"
@@ -335,7 +359,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-4xl px-4">
           <div className="mb-8">
-            <SectionLabel>Built for a specific investor</SectionLabel>
+            <SectionLabel tone="light">Built for a specific investor</SectionLabel>
           </div>
 
           <div className="space-y-6 text-slate-700 md:text-lg">
@@ -386,8 +410,8 @@ export default function Page() {
             {resultsStats.map((item, index) => (
               <motion.div
                 key={item.label}
-                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
                 className={`stat-card glass rounded-3xl p-8 text-center ${item.strong ? 'shadow-glow' : ''}`}
@@ -403,9 +427,19 @@ export default function Page() {
           </div>
 
           <div className="mt-6 text-center">
-            <a href={canonicalLinks.results} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-gold transition hover:text-[#f2c24f]">
+            <a
+              data-link="results-archive"
+              href="https://alphamaverick.io/results-transparency"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => {
+                event.preventDefault();
+                window.open('https://alphamaverick.io/results-transparency', '_blank', 'noopener,noreferrer');
+              }}
+              className="relative z-20 inline-flex items-center gap-2 text-sm font-medium text-gold transition hover:text-[#f2c24f]"
+            >
               See the full results archive
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <ArrowForwardRoundedIcon className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -415,15 +449,15 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-4xl px-4">
           <div className="mb-8">
-            <SectionLabel>Get started in 4 steps</SectionLabel>
+            <SectionLabel tone="light">Get started in 4 steps</SectionLabel>
           </div>
 
           <div className="space-y-4">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
-                initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.45, delay: index * 0.05 }}
                 className={`rounded-3xl border bg-white p-6 shadow-[0_10px_32px_rgba(15,23,42,0.06)] md:p-8 ${index === 3 ? 'border-amber-200 bg-gradient-to-br from-amber-50 to-white' : 'border-slate-200'}`}
@@ -438,7 +472,7 @@ export default function Page() {
                     {step.note ? <p className="mb-4 text-xs leading-relaxed text-slate-400">{step.note}</p> : null}
                     <a href={step.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 transition hover:text-amber-700">
                       {step.cta}
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                      <ArrowForwardRoundedIcon className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
@@ -447,7 +481,7 @@ export default function Page() {
           </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="w-full rounded-xl bg-gold px-8 py-4 text-center font-semibold text-white transition hover:bg-[#f2b44a] sm:w-auto">
+            <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="cta-gold w-full rounded-xl px-8 py-4 text-center font-semibold sm:w-auto">
               Start Membership for free today
             </a>
             <a href={canonicalLinks.riskProfile} target="_blank" rel="noreferrer" className="w-full rounded-xl border border-slate-300 bg-white px-8 py-4 text-center font-medium text-slate-700 transition hover:border-slate-400 sm:w-auto">
@@ -491,7 +525,7 @@ export default function Page() {
             <div className="mt-8 h-px bg-gold/10" />
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="flex-1 rounded-xl bg-gold px-6 py-4 text-center font-semibold text-white transition hover:bg-[#f2b44a]">
+              <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="cta-gold flex-1 rounded-xl px-6 py-4 text-center font-semibold">
                 Start Membership · 48 EUR
               </a>
               <a href={canonicalLinks.riskProfile} target="_blank" rel="noreferrer" className="flex-1 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-center font-medium text-white transition hover:border-gold/50 hover:bg-white/10">
@@ -506,7 +540,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-4xl px-4">
           <div className="mb-8">
-            <SectionLabel>Questions, clearly answered</SectionLabel>
+            <SectionLabel tone="light">Questions, clearly answered</SectionLabel>
           </div>
           <div className="space-y-3">
             {faqs.map((faq) => (
@@ -535,7 +569,7 @@ export default function Page() {
             <a href={canonicalLinks.riskProfile} target="_blank" rel="noreferrer" className="w-full rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-center font-medium text-white transition hover:border-gold/50 hover:bg-white/10 sm:w-auto">
               Find Your Risk Profile First
             </a>
-            <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="w-full rounded-xl bg-gold px-8 py-4 text-center font-semibold text-white transition hover:bg-[#f2b44a] sm:w-auto">
+            <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="cta-gold w-full rounded-xl px-8 py-4 text-center font-semibold sm:w-auto">
               Start Membership · 48 EUR/mo
             </a>
           </div>

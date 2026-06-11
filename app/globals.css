@@ -60,6 +60,45 @@ body {
     background: rgba(245, 166, 74, 0.06);
   }
 
+  .badge-pill-gold {
+    color: #7a4a10;
+    border-color: rgba(245, 166, 74, 0.42);
+    background: linear-gradient(120deg, rgba(245, 166, 74, 0.25) 0%, rgba(242, 194, 79, 0.28) 100%);
+  }
+
+  .nav-link-underline {
+    position: relative;
+  }
+
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.3rem;
+    height: 2px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+    background: linear-gradient(90deg, #f5a64a 0%, #f2c24f 100%);
+  }
+
+  .nav-link-underline:hover::after,
+  .nav-link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .cta-gold {
+    background-color: #f2c24f;
+    color: #ffffff;
+    transition: background-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .cta-gold:hover,
+  .cta-gold:focus-visible {
+    background-color: #d28e14;
+  }
+
   .text-gold-gradient {
     background: linear-gradient(120deg, #F5A64A 0%, #F2C24F 55%, #F5A64A 100%);
     -webkit-background-clip: text;
