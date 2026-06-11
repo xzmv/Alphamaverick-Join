@@ -1,6 +1,5 @@
 "use client";
 
-import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useState } from 'react';
@@ -439,7 +438,7 @@ export default function Page() {
               className="relative z-20 inline-flex items-center gap-2 text-sm font-medium text-gold transition hover:text-[#f2c24f]"
             >
               See the full results archive
-              <ArrowForwardRoundedIcon className="h-4 w-4" />
+              <svg className="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42s1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
             </a>
           </div>
         </div>
@@ -472,7 +471,7 @@ export default function Page() {
                     {step.note ? <p className="mb-4 text-xs leading-relaxed text-slate-400">{step.note}</p> : null}
                     <a href={step.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-600 transition hover:text-amber-700">
                       {step.cta}
-                      <ArrowForwardRoundedIcon className="h-4 w-4" />
+                      <svg className="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42s1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
                     </a>
                   </div>
                 </div>
