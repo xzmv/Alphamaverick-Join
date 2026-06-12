@@ -268,20 +268,21 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,5,1,0.92)_0%,rgba(6,5,1,0.72)_50%,rgba(6,5,1,0.46)_100%)]" aria-hidden="true" />
         <div className="absolute inset-0 bg-grid-dark bg-[size:80px_80px] opacity-60" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl items-center px-4 pt-28 pb-20">
-          <div className="max-w-3xl animate-fadeUp text-center lg:text-left">
+        <div className="relative z-10 flex min-h-[100svh] w-full items-end px-4 pt-32 pb-16 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 lg:pt-44 lg:pb-24">
+          <div className="w-full animate-fadeUp text-center lg:pb-8 lg:text-left">
             <SectionLabel>
               <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true" />
               Live since September 2025
             </SectionLabel>
-            <h1 className="mt-8 text-4xl font-light leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              You built your wealth<br />with discipline.<br />
+            <h1 className="mt-8 text-3xl font-light leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+              You built your wealth with discipline.
+              <br />
               <span className="text-gold-gradient font-semibold">Why invest any differently?</span>
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-100 md:text-xl">
+            <p className="mt-5 text-lg leading-relaxed text-slate-100 md:text-xl">
               An automated system that trades gold inside your own account.
             </p>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-300 md:text-lg">
+            <p className="mt-3 text-base leading-relaxed text-slate-300 md:text-lg">
               Your money never leaves your hands. You stay in control, you can withdraw anytime, and you can check on it whenever you want.
             </p>
 
@@ -446,12 +447,12 @@ export default function Page() {
 
       <SectionShell id="how-it-works" className="section-sep py-24 md:py-28" dark={false}>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
-        <div className="relative z-10 mx-auto max-w-4xl px-4">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-3 sm:px-5 lg:px-6">
           <div className="mb-8">
             <SectionLabel tone="light">Get started in 4 steps</SectionLabel>
           </div>
 
-          <div className="space-y-4">
+          <div className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-4">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -459,9 +460,9 @@ export default function Page() {
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.45, delay: index * 0.05 }}
-                className={`rounded-3xl border bg-white p-6 shadow-[0_10px_32px_rgba(15,23,42,0.06)] md:p-8 ${index === 3 ? 'border-amber-200 bg-gradient-to-br from-amber-50 to-white' : 'border-slate-200'}`}
+                className={`h-full rounded-3xl border bg-white p-6 shadow-[0_10px_32px_rgba(15,23,42,0.06)] md:p-8 ${index === 3 ? 'border-amber-200 bg-gradient-to-br from-amber-50 to-white' : 'border-slate-200'}`}
               >
-                <div className="flex items-start gap-5">
+                <div className="flex h-full flex-col gap-5">
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-500 shadow-md">
                     <span className="font-mono text-sm font-bold text-white">{step.number}</span>
                   </div>
