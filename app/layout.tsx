@@ -15,11 +15,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Alpha Maverick: Automated Gold Trading System',
-  description: 'Alpha Maverick is an automated system that trades gold inside your own broker account.',
+  title: 'Alpha Maverick | You built your wealth with discipline',
+  description: 'An automated system that trades gold inside your own account. Your money never leaves your hands. You stay in control.',
   openGraph: {
-    title: 'Alpha Maverick: Automated Gold Trading System',
-    description: 'Automated gold trading inside your own broker account.',
+    title: 'Alpha Maverick | You built your wealth with discipline',
+    description: 'An automated system that trades gold inside your own account. Your money never leaves your hands. You stay in control.',
     url: 'https://alphamaverick.io',
     siteName: 'Alpha Maverick',
     type: 'website',

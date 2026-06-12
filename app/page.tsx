@@ -9,12 +9,16 @@ const canonicalLinks = {
   riskProfile: 'https://alphamaverick.io/risk-profile',
   tutorials: 'https://alphamaverick.io/for-investors#how-it-works',
   membership: 'https://alphamaverick.io/membership#membership-card',
+  vtActivation: 'https://social.vtacademy.net/portal/registration/subscription/95738/AlphaMaverick',
+  equitiActivation: 'https://copy.equiti.com/portal/registration/subscription/82079/AlphaMaverick',
+  vtManage: 'https://social.vtacademy.net/portal/login',
+  equitiManage: 'https://copy.equiti.com/portal/login',
 };
 
 const whatIsCards = [
   {
     title: "It's not what you might think",
-    text: 'Alpha Maverick is not a fund, a managed account, or financial advice. No one invests on your behalf. You own the account, and the final decision is always yours.',
+    text: "Alpha Maverick isn't a fund, a managed account, or financial advice. No one invests on your behalf, you own the account, and the final decision is always yours.",
     icon: 'lock',
   },
   {
@@ -31,7 +35,7 @@ const whatIsCards = [
 
 const resultsStats = [
   { value: '+259.24%', label: 'Total return since inception', strong: true },
-  { value: '35/39', label: 'Profitable weeks' },
+  { value: '35/39', label: 'Reporting weeks in profit' },
   { value: '160+', label: 'Countries available' },
 ];
 
@@ -39,10 +43,10 @@ const steps = [
   {
     number: '01',
     title: 'Define your risk profile',
-    text: 'Answer a few simple questions to set your capital allocation and define your risk profile.',
+    text: 'Answer a few simple questions to set your capital allocation and define your risk profile. Standard setup uses 0.01 lots per $1,000, typically resulting in a 15% maximum weekly swing. For a more conservative ~5% swing, we recommend starting with $3,000.',
     cta: 'Define Risk Profile now',
     href: canonicalLinks.riskProfile,
-    note: 'This process is free and non-binding. It simply calibrates the system to your needs.',
+    note: 'This process is free and non-binding; it simply calibrates the system to your needs.',
   },
   {
     number: '02',
@@ -55,52 +59,107 @@ const steps = [
   {
     number: '03',
     title: 'Open and fund your broker account',
-    text: 'A broker is a regulated company that holds your money in your own account, in your name, just like a bank. Alpha Maverick connects to your account through a free program called MetaTrader 5 (MT5). Watch a short tutorial here. No financial background is needed.',
-    cta: 'Open account',
+    text: 'A broker is a regulated company that holds your money in your own account, in your name, just like a bank. Alpha Maverick connects to your account through a free program called MetaTrader 5 (MT5). Watch a short tutorial here. No financial background is needed. VT Markets: MT5 Raw ECN | from $500 | Multi-Currency. Equiti: MT5 Premium | from $1,000.',
+    cta: 'Watch tutorial here',
     href: canonicalLinks.tutorials,
-    note: 'Investing more than $10,000? Use the VT Markets priority registration link.',
+    note: (
+      <>
+        Investing more than $10,000? Use the VT Markets{' '}
+        <a href={canonicalLinks.vtActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          priority registration link
+        </a>
+        . VT Markets and Equiti may offer deposit incentives, set and governed entirely by the broker. Terms, eligibility and availability depend on your jurisdiction, check directly with the broker.
+      </>
+    ),
   },
   {
     number: '04',
     title: 'Connect and activate',
-    text: "Once your account is funded and MT5 is installed, simply click your broker's activation link (VT Markets1 or Equiti1). The system connects automatically and starts trading gold. You can watch it work from then on, with a step-by-step tutorial available if you need it.",
-    cta: 'Activation details',
+    text: (
+      <>
+        Once your account is funded and MT5 is installed, simply click your broker's activation link ({' '}
+        <a href={canonicalLinks.vtActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          VT Markets1
+        </a>{' '}
+        or{' '}
+        <a href={canonicalLinks.equitiActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          Equiti1
+        </a>
+        ). The system connects automatically and starts trading gold. You can watch it work from then on, with a step-by-step{' '}
+        <a href={canonicalLinks.tutorials} target="_blank" rel="noreferrer" className="link-emphasis">
+          tutorial
+        </a>{' '}
+        available if you need it.
+      </>
+    ),
+    cta: 'Step-by-step tutorial',
     href: canonicalLinks.tutorials,
-    note: 'Manage risk or pause the system anytime using your broker links. Because your capital stays in your own account, all withdrawals are handled directly through your broker.',
+    note: (
+      <>
+        Manage risk or pause the system anytime using your broker links:{' '}
+        <a href={canonicalLinks.vtManage} target="_blank" rel="noreferrer" className="link-emphasis">
+          VT Markets2
+        </a>{' '}
+        or{' '}
+        <a href={canonicalLinks.equitiManage} target="_blank" rel="noreferrer" className="link-emphasis">
+          Equiti2
+        </a>
+        . Because your capital stays in your own account, all withdrawals are handled directly through your broker.
+      </>
+    ),
   },
 ];
 
 const faqs = [
   {
-    q: 'What exactly is a broker? Do I need to know anything about trading?',
+    q: '1. What exactly is a broker? Do I need to know anything about trading?',
     a: 'A broker is a regulated platform that holds your capital and executes trades. Think of it as the account where your investment lives, like a bank account. Alpha Maverick connects to that account, but your money stays in your name, under your control. You do not need to know how to trade. The Expert Advisor does that.',
   },
   {
-    q: 'Which broker, VT Markets or Equiti?',
-    a: 'Either one works, and both come with full video tutorials. If you are not sure, VT Markets is the simpler place to start. It is more self-service to set up, it supports multiple currencies, and you can begin from $500. Choose Equiti if you would prefer a USD-only account; it starts from $1,000. Investing more than $10,000? Use the VT Markets priority registration link.',
+    q: '2. Which broker, VT Markets or Equiti?',
+    a: (
+      <>
+        Either one works, and both come with full video tutorials. If you are not sure, VT Markets is the simpler place to start, it is more self-service to set up, it supports multiple currencies, and you can begin from $500. Choose Equiti if you would prefer a USD-only account; it starts from $1,000. Investing more than $10,000? Use the VT Markets{' '}
+        <a href={canonicalLinks.vtActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          priority registration link
+        </a>
+      </>
+    ),
   },
   {
-    q: 'Do I need to install anything technical?',
-    a: 'Only MetaTrader 5, the free app mentioned above. Once it is installed, you click the activation link we provide to connect the system. It takes under a minute. No coding, nothing to configure yourself, no technical knowledge required.',
+    q: '3. Do I need to install anything technical?',
+    a: (
+      <>
+        Only MetaTrader 5, the free app mentioned above. Once it is installed, you click the activation link we provide ({' '}
+        <a href={canonicalLinks.vtActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          VT Markets1
+        </a>
+        ,{' '}
+        <a href={canonicalLinks.equitiActivation} target="_blank" rel="noreferrer" className="link-emphasis">
+          Equiti1
+        </a>
+        ) to connect the system. It takes under a minute. No coding, nothing to configure yourself, no technical knowledge required.
+      </>
+    ),
   },
   {
-    q: 'What is the minimum to start?',
+    q: '4. What is the minimum to start?',
     a: '$500 USD with VT Markets. For a more conservative risk exposure, around 5% weekly, we recommend starting with $3,000. The Risk Profile calculator tells you exactly what makes sense for your capital before you open anything.',
   },
   {
-    q: 'Can I lose money?',
+    q: '5. Can I lose money?',
     a: 'Yes. This is real market participation, not a guarantee. Some weeks the system loses. That is exactly why we point you to the Risk Profile and the full archive before you activate: so you see the downside as clearly as the upside, and decide with your eyes open.',
   },
   {
-    q: 'Can I get my money out whenever I want?',
+    q: '6. Can I get my money out whenever I want?',
     a: 'Yes, whenever you want. It is your money, in your broker account, and you request the withdrawal directly through the broker. No approval from us, no lock-up, no delay on our side. One practical tip: during the trading week, some of your balance may be tied up in open positions, so it might not all be available at that exact moment. That is why we suggest requesting withdrawals over the weekend. The market is closed, there are no open trades, and your full balance is settled and ready.',
   },
   {
-    q: 'What do I actually need to do after activation?',
+    q: '7. What do I actually need to do after activation?',
     a: 'Almost nothing, with one exception. The EA trades automatically, so day to day there is nothing to do. The one thing to keep an eye on: as your account grows, you nudge your lot size up to keep your risk proportional: 0.01 lots for every $1,000. It takes seconds, your dashboard shows you when, and the weekly review reminds you. Everything else runs without you.',
   },
   {
-    q: 'What happened during the losing weeks?',
+    q: '8. What happened during the 4 losing weeks?',
     a: 'Each one was documented fully in that week\'s review: what market conditions caused it, how the system responded, and what it meant going forward. We do not hide the bad weeks. We explain them. The full archive, including every losing week, is available to all members from day one.',
   },
 ];
@@ -364,15 +423,16 @@ export default function Page() {
 
           <div className="space-y-6 text-slate-700 md:text-lg">
             <p className="leading-relaxed">
-              The people who choose Alpha Maverick are not chasing shortcuts. They want something that fits how they already think about money: long-term, deliberate, always in control.
+              The people who choose Alpha Maverick are not chasing shortcuts. They want something that fits how they already think about money; long-term, deliberate, always in control.
             </p>
-            <blockquote className="border-l-2 border-amber-400 pl-4">
-              <p className="italic leading-relaxed text-slate-800">
-                "You do not want someone managing your money. You want a system you can trust, and check whenever you choose."
-              </p>
-            </blockquote>
             <p className="leading-relaxed">
-              You built everything yourself, and staying in control is how you stay confident. You need to know it is working, and to reach your money the moment life throws something unexpected.
+              You've invested for years and trust no judgment but your own. You don't want someone managing your money, you want a system you can trust, and check whenever you choose.
+            </p>
+            <p className="leading-relaxed">
+              You built everything yourself, and staying in control is how you stay confident. You need to know it's working, and to reach your money the moment life throws something unexpected.
+            </p>
+            <p className="leading-relaxed">
+              Either way, it was built for the way you already operate. Let Alpha Maverick work for you.
             </p>
           </div>
 
@@ -399,10 +459,10 @@ export default function Page() {
                 <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true" />
                 Live since September 2025
               </SectionLabel>
-              <h2 className="mt-5 text-3xl font-light tracking-tight text-white md:text-4xl">It has not stopped.</h2>
+              <h2 className="mt-5 text-3xl font-light tracking-tight text-white md:text-4xl">Since September 2025, it hasn't stopped.</h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-slate-400 md:text-right">
-              Real results. Updated every week. Available to all members.
+              In 39 weeks of reporting, the account grew in 35 of them.
             </p>
           </div>
 
@@ -423,7 +483,7 @@ export default function Page() {
           </div>
 
           <div className="mt-8 text-center text-sm text-slate-500">
-            Global system, global investors. Available in 160+ countries.
+            Global system, global investors - available in 160+ countries.
           </div>
 
           <div className="mt-6 text-center">
@@ -438,7 +498,7 @@ export default function Page() {
               }}
               className="relative z-20 inline-flex items-center gap-2 text-sm font-medium text-gold transition hover:text-[#f2c24f]"
             >
-              See the full results archive
+              See the full archive
               <svg className="h-4 w-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42s1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6a.996.996 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
             </a>
           </div>
@@ -449,7 +509,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-[1400px] px-3 sm:px-5 lg:px-6">
           <div className="mb-8">
-            <SectionLabel tone="light">Get started in 4 steps</SectionLabel>
+            <SectionLabel tone="light">Get started in just a few steps</SectionLabel>
           </div>
 
           <div className="grid gap-4 lg:grid-cols-2 2xl:grid-cols-4">
@@ -495,7 +555,7 @@ export default function Page() {
         <div className="absolute inset-x-0 top-0 mx-auto h-[360px] w-[900px] rounded-full bg-gold/10 blur-3xl" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-2xl px-4">
           <div className="mb-6 text-center">
-            <SectionLabel>One plan. Everything included.</SectionLabel>
+            <SectionLabel>One Membership. Everything Included. 48 EUR a month.</SectionLabel>
           </div>
           <div className="mb-10 text-center">
             <p className="text-sm text-slate-400">Get an automated system that trades gold for you and get results.</p>
@@ -511,7 +571,7 @@ export default function Page() {
                 'Runs in your own broker account. Your money stays in your name and control.',
                 'Includes risk setup, weekly updates, and full access to past results.',
                 'Adjust your risk anytime and get setup support.',
-                'Cancel anytime. No lock-in. 7 days free to start.',
+                'Cancel anytime. No lock-in.',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/15">
@@ -540,7 +600,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(245,166,74,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(245,166,74,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-4xl px-4">
           <div className="mb-8">
-            <SectionLabel tone="light">Questions, clearly answered</SectionLabel>
+            <SectionLabel tone="light">COMMON QUESTIONS · Answered Before They're Asked</SectionLabel>
           </div>
           <div className="space-y-3">
             {faqs.map((faq) => (
@@ -561,16 +621,16 @@ export default function Page() {
         <div className="absolute left-1/2 top-1/2 h-[420px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-3xl" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-2xl px-4 text-center">
           <h2 className="text-4xl font-light leading-tight text-white md:text-5xl">
-            Ready to activate<br />
-            <span className="text-gold-gradient font-semibold">Alpha Maverick?</span>
+            Start your 7 day free trial<br />
+            <span className="text-gold-gradient font-semibold">Secure your financial independence</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-300">Start with your risk profile, then activate your account in minutes.</p>
+          <p className="mt-4 text-lg text-slate-300">Find your risk profile first, then start membership.</p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a href={canonicalLinks.riskProfile} target="_blank" rel="noreferrer" className="w-full rounded-xl border border-white/15 bg-white/5 px-8 py-4 text-center font-medium text-white transition hover:border-gold/50 hover:bg-white/10 sm:w-auto">
               Find Your Risk Profile First
             </a>
             <a href={canonicalLinks.membership} target="_blank" rel="noreferrer" className="cta-gold w-full rounded-xl px-8 py-4 text-center font-semibold sm:w-auto">
-              Start Membership · 48 EUR/mo
+              Start Membership - 48 EUR/month
             </a>
           </div>
         </div>
